@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const issueSchema = new Schema(
+const postSchema = new Schema(
     {
         description: {
             type: String,
@@ -17,4 +17,4 @@ const issueSchema = new Schema(
     }
 )
 
-module.exports = mongoose.model('Issue', issueSchema)
+module.exports = mongoose.model('Post', postSchema)

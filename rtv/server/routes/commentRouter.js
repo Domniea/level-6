@@ -6,7 +6,7 @@ const Comment = require('../models/comment')
 const { findOneAndDelete } = require('../models/user')
 
 //Get All
-commentRouter.post('/', (req, res, next) => {
+commentRouter.get('/', (req, res, next) => {
     Comment.find((err, allData) => {
         if(err) {
             res.status(500)
@@ -45,14 +45,14 @@ commentRouter.delete('/:commentId', (req, res, next) => {
 })
 
 //Put
-commentRouter.put('/:commentId', (req, res, next) => {
-    Comment.findByIdAndUpdate(
-        {_id: req.params._id, user: req.auth._id},
-        (err, updatedComment), 
-    )
-})
+// commentRouter.put('/:commentId', (req, res, next) => {
+//     Comment.findByIdAndUpdate(
+//         {_id: req.params._id, user: req.auth._id},
+//         (err, updatedComment), 
+//     )
+// })
 
-//Put
+
 
 
 module.exports = commentRouter
