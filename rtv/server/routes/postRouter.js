@@ -42,4 +42,21 @@ postRouter.post('/', (req, res, next) => {
     })
 })
 
+//Delete a Post
+postRouter.delete('/:postId', (req, res, next) => {
+    Post.findOneAndDelete(
+        {
+            _id: req.params.postId, user: req.auth._id
+        },
+        (err, deletedPost) => {
+            if(err) {
+                res.status(500)
+                return next(err)
+            }
+            return res.status(200).send(deletedPost)
+        }
+    )
+    
+})
+
 module.exports = postRouter

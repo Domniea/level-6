@@ -5,8 +5,8 @@ function Navbar(props) {
   const { logout } = props
     return(
         <div>
-          <Link to='/profile'>Profile</Link>
-          <Link to='/public'>Public</Link>
+          <Link to='/'>Profile</Link>
+          <Link to='/allPosts'>All Posts</Link>
           <Link to='/home'>Home</Link>
           <button onClick={logout}>Log Out</button>
         </div>

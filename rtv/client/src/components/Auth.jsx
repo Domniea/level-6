@@ -8,7 +8,7 @@ const initInputs = {
 }
 
 function Auth() {
-    const { signup, login } = useContext(UserContext)
+    const { signup, login, errMsg } = useContext(UserContext)
 
     const [inputs, setInputs] = useState(initInputs)
     const [loggedIn, setLoggedsIn] = useState(false)
@@ -50,6 +50,7 @@ function Auth() {
                         handleChange={handleChange}
                         handleSubmit={handleSignup}
                     />
+                    <h3 style={{color: 'red'}}>{errMsg}</h3>
                     <h3 onClick={() => toggle()}>Already a User?</h3>
                 </>
                 :
@@ -59,7 +60,7 @@ function Auth() {
                         buttonTxt='Log In'
                         handleChange={handleChange}
                         handleSubmit={handleLogin}
-                    />
+                    /><h3 style={{color: 'red'}}>{errMsg}</h3>
                     <h3 onClick={() => toggle()}>Not a User yet?</h3>
                 </>
             }

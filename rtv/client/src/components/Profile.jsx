@@ -6,13 +6,14 @@ import { UserContext } from "../context/UserProvider";
 function Profile() {
     const { 
         user: {
-            username
+            username,
         },
+        token,
         addPost,
-        posts
+        deletePost,
+        posts,
+        getUsersPosts
      } = useContext(UserContext)
-
-     console.log(posts)
 
     return (
         <div>
@@ -20,7 +21,12 @@ function Profile() {
             <h2>Welcome {username}</h2>
             <PostForm addPost={addPost}/>
             <h3>Your Posts</h3>
-            <PostList posts={posts} />
+            <PostList 
+                posts={posts} 
+                getUsersPosts={getUsersPosts}
+                deletePost={deletePost}
+                // token={token}
+            />
         </div>
     )
 }

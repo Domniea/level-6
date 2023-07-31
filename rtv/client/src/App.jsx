@@ -1,9 +1,10 @@
-import { useState, useContext } from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { useContext } from 'react'
+import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Auth from './components/Auth'
 import Home from './components/TempHome'
-import Public from './components/Public'
+import APList from './components/APList'
+import ProtectedRoute from './components/ProtectedRoute'
 import Profile from './components/Profile'
 import { UserContext } from './context/UserProvider'
 import './App.css'
@@ -16,9 +17,12 @@ function App() {
       <Navbar logout={logout} />
       <Routes>
           <Route path='/' element={ token ? <Profile/> : <Auth/>}/>
-          <Route path='/home' element={<Home/>}/>
-          <Route path='/public' element={<Public />}/>
-          <Route path='/profile' element={<Profile />}/>
+          <Route path='/home' element={<ProtectedRoute token={token} redirectTo={<Auth/>}>
+              <Home/>
+            </ProtectedRoute>}/>
+          <Route path='/allPosts' element={<ProtectedRoute token={token} redirectTo={<Auth/>}>
+              <APList/>
+            </ProtectedRoute>}/>
       </Routes>
     </div>
   )
