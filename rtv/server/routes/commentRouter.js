@@ -3,11 +3,12 @@ const commentRouter = express.Router()
 require('dotenv').config()
 const jwt = require('jsonwebtoken')
 const Comment = require('../models/comment')
-const { findOneAndDelete } = require('../models/user')
 
-//Get All
-commentRouter.get('/', (req, res, next) => {
-    Comment.find((err, allData) => {
+//Get Post Comment
+commentRouter.get('/:postID', (req, res, next) => {
+    Comment.find(
+        { post: req.params.postID },
+        (err, allData) => {
         if(err) {
             res.status(500)
             return next(err)
@@ -19,6 +20,7 @@ commentRouter.get('/', (req, res, next) => {
 //Post One
 commentRouter.post('/', (req, res, next) => {
     req.body.user = req.auth._id
+    console.log(req.body)
     const newComment = new Comment(req.body)
     newComment.save((err, savedComment) => {
         if(err) {

@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react'
-import CommentsBox from './CommentsBox'
-import { PostContext } from '../context/PostProvider'
-import axios from 'axios'
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import CommentsBox from "./CommentsBox";
 
 const userAxios = axios.create()
 
@@ -11,14 +10,11 @@ userAxios.interceptors.request.use(config => {
     return config
 })
 
-function APPost(props) {
-    const { title, description, _id } = props
+function UserPost(props) {
+    const { title, _id, description, deletePost } = props
     
-    const PostData = useContext(PostContext)
-
-
     const [postComments, setPostComments] = useState([])
-
+    
     //Retrieve Post Comments
     function retrievePostComments(postID) {
         userAxios.get(`/api/api/comment/${postID}`)
@@ -26,22 +22,23 @@ function APPost(props) {
             .catch(err => console.log(err))
     }
 
+    
     useEffect(() => {
         retrievePostComments(_id)
     }, [])
-        
 
-        console.log(postComments)
-    return (
-        <div className='post'>
-            <h3>{title}</h3>
-            <h4>{description}</h4>
+    return(
+        <div className="post">
+            <h2>{title}</h2>
+            <h3>{description}</h3>
             <CommentsBox 
-                id={_id}
+                _id={_id}
                 postComments={postComments}
+                retrievePostComments={retrievePostComments}
             />
+            <button onClick={() => deletePost(_id)}>Delete</button>
         </div>
     )
 }
 
-export default APPost
+export default UserPost

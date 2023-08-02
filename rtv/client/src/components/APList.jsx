@@ -9,7 +9,6 @@ function APList() {
 
     const { getAllPosts, allPosts } = PostList
 
-    console.log(allPosts)
     useEffect(() => {
         getAllPosts()
     },[])
@@ -19,13 +18,8 @@ function APList() {
             key={post._id}
             {...post}
         />
-        // (
-        //     <div key={PI._id}>
-        //         <h1>{PI.title}</h1>
-        //         <h3>{PI.description}</h3>
-        //     </div>
-        // )
     })
+
     return (
         <div>
             <h1>All Posts</h1>

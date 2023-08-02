@@ -1,19 +1,24 @@
-import React ,{ useContext } from "react";
+import React ,{ useContext, useEffect, useState } from "react";
 import PostForm from "./PostForm";
-import PostList from "./PostList";
+import UserPostList from "./UserPostList";
 import { UserContext } from "../context/UserProvider";
+import { PostContext } from "../context/PostProvider";
 
 function Profile() {
     const { 
         user: {
             username,
+            _id
         },
-        token,
+        token
+     } = useContext(UserContext)
+
+     const {
+        userPosts,
         addPost,
         deletePost,
-        posts,
         getUsersPosts
-     } = useContext(UserContext)
+     } = useContext(PostContext)
 
     return (
         <div>
@@ -21,12 +26,7 @@ function Profile() {
             <h2>Welcome {username}</h2>
             <PostForm addPost={addPost}/>
             <h3>Your Posts</h3>
-            <PostList 
-                posts={posts} 
-                getUsersPosts={getUsersPosts}
-                deletePost={deletePost}
-                // token={token}
-            />
+            <UserPostList _id={_id}/>
         </div>
     )
 }

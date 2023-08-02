@@ -4,7 +4,8 @@ import React, { useState } from "react";
 function PostForm(props) {
     const initInputs = {
         title: '',
-        description: ''
+        description: '',
+        posts: []
     }
 
     const { addPost } = props

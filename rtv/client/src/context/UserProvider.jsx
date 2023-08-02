@@ -1,6 +1,5 @@
 import React, { useState, createContext } from "react";
 import axios from "axios";
-// import user from "../../../server/models/user";
 
 const userAxios = axios.create()
 
@@ -145,4 +144,4 @@ function UserProvider(props) {
     )
 }
 
-export {UserContext, UserProvider}
+export { UserContext, UserProvider }

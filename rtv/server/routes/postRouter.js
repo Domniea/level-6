@@ -3,7 +3,7 @@ const postRouter = express.Router()
 const Post = require('../models/post')
 
 
-// Get All Todos
+// Get All Posts
 postRouter.get("/", (req, res, next) => {
     Post.find((err, posts) => {
       if(err){
@@ -15,9 +15,9 @@ postRouter.get("/", (req, res, next) => {
 })
 
 //Get Users Posts
-postRouter.get('/user', (req,res,next) => {
+postRouter.get(`/:userId}`, (req,res,next) => {
     Post.find(
-        { user: req.auth._id },
+        { _id: req.params.userId },
         (err, posts) => {
             if(err) {
                 res.status(500)
