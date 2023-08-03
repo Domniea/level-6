@@ -8,17 +8,17 @@ const {
         getUsersPosts,
         deletePost
     } = useContext(PostContext)
-    const {_id} = props
+    const {user_id} = props
 
  
     useEffect(() => {
-        getUsersPosts(_id)
+        getUsersPosts(user_id)
     }, [])
 
 
     return (
         <div className="PostList">
-            { userPosts.map(item => <UserPost {...item} deletePost={deletePost} key={item._id}/>) }
+            { userPosts.map(item => <UserPost {...item} deletePost={deletePost} key={item._id} postId={user_id}/>) }
         </div>
     )
 }

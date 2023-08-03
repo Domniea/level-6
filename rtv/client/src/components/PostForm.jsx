@@ -8,7 +8,7 @@ function PostForm(props) {
         posts: []
     }
 
-    const { addPost } = props
+    const { addPost, user_id } = props
 
     const [inputs, setInputs] = useState(initInputs)
 
@@ -25,7 +25,7 @@ function PostForm(props) {
     function handleSubmit(e) {
         e.preventDefault()
         console.log(inputs)
-        addPost(inputs)
+        addPost(inputs, user_id)
 
     }
 

@@ -19,14 +19,14 @@ const postSchema = new Schema(
             type: Schema.Types.ObjectId,
             ref: 'User',
             required: true
-        },
-        comments: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'Comment',
-                default: []
-            }
-        ]
+        }
+        // comments: [
+        //     {
+        //         type: Schema.Types.ObjectId,
+        //         ref: 'Comment',
+        //         default: []
+        //     }
+        // ]
     } 
 )
 

@@ -27,8 +27,8 @@ function CommentsProvider(props) {
     }
     
     //Post Comment
-    function addComment(credentials, id) {
-        userAxios.post('/api/api/comment/', {comment: credentials.comment, post: id})
+    function addComment(credentials, postId) {
+        userAxios.post(`/api/api/comment/${postId}`, {comment: credentials.comment, post: postId})
         .then(res => console.log(res))
         .catch(err => console.log(err))
     }

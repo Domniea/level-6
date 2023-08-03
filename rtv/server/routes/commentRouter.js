@@ -5,9 +5,9 @@ const jwt = require('jsonwebtoken')
 const Comment = require('../models/comment')
 
 //Get Post Comment
-commentRouter.get('/:postID', (req, res, next) => {
+commentRouter.get('/:postId', (req, res, next) => {
     Comment.find(
-        { post: req.params.postID },
+        { post: req.params.postId },
         (err, allData) => {
         if(err) {
             res.status(500)
@@ -17,8 +17,8 @@ commentRouter.get('/:postID', (req, res, next) => {
     })
 })
 
-//Post One
-commentRouter.post('/', (req, res, next) => {
+//Post Comment
+commentRouter.post('/:postId', (req, res, next) => {
     req.body.user = req.auth._id
     console.log(req.body)
     const newComment = new Comment(req.body)

@@ -15,9 +15,9 @@ postRouter.get("/", (req, res, next) => {
 })
 
 //Get Users Posts
-postRouter.get(`/:userId}`, (req,res,next) => {
+postRouter.get(`/:userId`, (req,res,next) => {
     Post.find(
-        { _id: req.params.userId },
+        { user: req.params.userId },
         (err, posts) => {
             if(err) {
                 res.status(500)
@@ -28,8 +28,8 @@ postRouter.get(`/:userId}`, (req,res,next) => {
     )
 })
 
-//Post a Post
-postRouter.post('/', (req, res, next) => {
+//Add a Post
+postRouter.post('/:userId', (req, res, next) => {
     req.body.user = req.auth._id
     const newPost = new Post(req.body)
     newPost.save((err, savedPost) => {

@@ -15,7 +15,6 @@ function UserProvider(props) {
     const initUser = {
         user: JSON.parse(localStorage.getItem('user')) || '',
         token: localStorage.getItem('token') || '',
-        posts: [],
         errMsg: ''
     }
 
@@ -104,13 +103,13 @@ function UserProvider(props) {
     }
 
     //Get All Users Posts
-    function getAllPosts() {
-        userAxios.get('/api/api/posts')
-        .then(res => {
-            setAllPosts(res.data)
-        })
-        .catch(err => console.log(err.response.data.errMsg))
-    }
+    // function getAllPosts() {
+    //     userAxios.get('/api/api/posts')
+    //     .then(res => {
+    //         setAllPosts(res.data)
+    //     })
+    //     .catch(err => console.log(err.response.data.errMsg))
+    // }
 
     //Delete User Post
     function deletePost(postId) {
@@ -133,9 +132,9 @@ function UserProvider(props) {
             logout,
             addPost,
             deletePost,
-            getUsersPosts,
-            getAllPosts,
-            allPosts,
+            getUsersPosts
+            // getAllPosts,
+            // allPosts,
 
         }}
     >

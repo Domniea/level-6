@@ -34,7 +34,7 @@ function UserPost(props) {
             <CommentsBox 
                 _id={_id}
                 postComments={postComments}
-                retrievePostComments={retrievePostComments}
+                setPostComments={setPostComments}
             />
             <button onClick={() => deletePost(_id)}>Delete</button>
         </div>

@@ -1,17 +1,37 @@
 import React , {useState, useContext, useEffect} from "react";
+import axios from "axios";
 import Comment from "./Comment";
-import { CommentsContext } from "../context/CommentsProvider";
-import { PostContext } from "../context/PostProvider";
+
+const userAxios = axios.create()
+
+userAxios.interceptors.request.use(config => {
+    const token = localStorage.getItem('token')
+    config.headers.Authorization = `Bearer ${token}`
+    return config
+})
 
 function CommentsBox(props) {
+ 
+    const { _id, postComments, setPostComments } = props
 
-    const { addComment } = useContext(CommentsContext)
-    const { _id, postComments, retrievePostComments } = props
     const initInput = {
         comment:''
     }
     const [input, setInput] = useState(initInput)
-    // const [comments, setComments] = useState([])
+
+
+    //Post Comment
+    function addComment(credentials, postId) {
+        userAxios.post(`/api/api/comment/${postId}`, {comment: credentials.comment, post: postId})
+        .then(res => setPostComments(prevState => {
+            return [
+                ...prevState,
+                res.data
+            ]
+        }))
+        .catch(err => console.log(err))
+    }
+
 
     function handleChange(e) {
         const { name, value } = e.target
@@ -23,12 +43,9 @@ function CommentsBox(props) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        console.log(_id)
         addComment(input, _id)
-        console.log(1)
-        getUsersPosts()
-        console.log(2)
-
+        setInput(initInput)
+ 
     }
 
     const comment = postComments.map(comment => {

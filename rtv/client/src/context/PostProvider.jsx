@@ -22,6 +22,7 @@ function PostProvider(props) {
             .then(res => {
                 setUserPosts(res.data)
             })
+            // .then(res => console.log(res))
             .catch(err => console.log(err))
     }
 
@@ -35,15 +36,17 @@ function PostProvider(props) {
     }
 
     //Add Post
-    function addPost(credentials){
-        userAxios.post('/api/api/posts/', credentials)
+    function addPost(credentials, userId){
+        userAxios.post(`/api/api/posts/${userId}`, credentials)
             .then(res => {
-                setUserPosts(prevState => ({
-                    ...prevState,
-                    posts: [...prevState.posts, res.data]
-                }))
-                localStorage.setItem('posts', posts)
+                setUserPosts(prevState => {
+                    return [
+                        ...prevState,
+                        res.data
+                    ]
+                })
             })
+            .then(res => console.log(res))
             .catch(err => console.log(err.response))
     }
 
@@ -51,10 +54,7 @@ function PostProvider(props) {
     function deletePost(postId) {
         userAxios.delete(`/api/api/posts/${postId}`)
             .then(res => {
-                setUserPosts(prevState => ({
-                    ...prevState,
-                    posts: prevState.posts.filter(posts => posts._id !== postId)
-                }))
+                setUserPosts(prevState => prevState.filter(posts => posts._id !== postId))
             })
             .catch(err => console.log(err))
     }
@@ -67,6 +67,7 @@ function PostProvider(props) {
                 addPost,
                 deletePost,
                 getUsersPosts,
+                allPosts,
                 getAllPosts,
                 userPosts
             }}

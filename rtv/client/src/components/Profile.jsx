@@ -24,9 +24,9 @@ function Profile() {
         <div>
             <h1>Profile</h1>
             <h2>Welcome {username}</h2>
-            <PostForm addPost={addPost}/>
+            <PostForm addPost={addPost} user_id={_id}/>
             <h3>Your Posts</h3>
-            <UserPostList _id={_id}/>
+            <UserPostList user_id={_id}/>
         </div>
     )
 }

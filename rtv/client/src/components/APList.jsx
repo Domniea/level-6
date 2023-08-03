@@ -1,14 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
 import APPost from "./APPost";
 import { UserContext } from "../context/UserProvider";
+import { PostContext } from "../context/PostProvider";
 
 
 function APList() {
 
+    const {
+        allPosts,
+        getAllPosts
+    } = useContext(PostContext)
+
     const PostList = useContext(UserContext)
+    const { } = PostList
 
-    const { getAllPosts, allPosts } = PostList
-
+    console.log(allPosts)
     useEffect(() => {
         getAllPosts()
     },[])
@@ -19,7 +25,7 @@ function APList() {
             {...post}
         />
     })
-
+    
     return (
         <div>
             <h1>All Posts</h1>
