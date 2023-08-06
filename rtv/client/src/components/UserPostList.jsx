@@ -14,11 +14,11 @@ const {
     useEffect(() => {
         getUsersPosts(user_id)
     }, [])
-
+    console.log(user_id)
 
     return (
         <div className="PostList">
-            { userPosts.map(item => <UserPost {...item} deletePost={deletePost} key={item._id} postId={user_id}/>) }
+            { userPosts.map(item => <UserPost {...item} deletePost={deletePost} key={item._id} user_id={user_id}/>) }
         </div>
     )
 }

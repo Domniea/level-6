@@ -3,7 +3,23 @@
     padding: 0
 }
 
+.nav-link  {
+    margin: 2vh;
+}
+
 .post {
     border: 1px solid black;
+    margin: 1vh;
+    padding: 1vh
+}
+
+.CommentsBox {
+    margin: 1vh;
+    padding: 2vh;
+    border: 1px solid grey;
+    background: whitesmoke;
+}
+
+.Comment {
     margin: 1vh
 }

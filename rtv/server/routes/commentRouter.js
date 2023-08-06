@@ -1,7 +1,5 @@
 const express = require('express')
 const commentRouter = express.Router()
-require('dotenv').config()
-const jwt = require('jsonwebtoken')
 const Comment = require('../models/comment')
 
 //Get Post Comment

@@ -1,21 +1,25 @@
 const express = require('express')
 const postRouter = express.Router()
 const Post = require('../models/post')
+const Vote = require('../models/voter')
 
 
 // Get All Posts
 postRouter.get("/", (req, res, next) => {
-    Post.find((err, posts) => {
-      if(err){
-        res.status(500)
-        return next(err)
-      }
-      return res.status(200).send(posts)
-    })
+    Post.find(
+        (err, posts) => {
+            if(err) {
+                res.status(500)
+                return next(err)
+            }
+            return res.status(200).send(posts)
+        }
+    ).sort()
+            
 })
 
 //Get Users Posts
-postRouter.get(`/:userId`, (req,res,next) => {
+postRouter.get('/:userId', (req,res,next) => {
     Post.find(
         { user: req.params.userId },
         (err, posts) => {

@@ -13,20 +13,13 @@ const postSchema = new Schema(
         },
         votes: {
             type: Number,
-            default: 0
         },
         user: {
             type: Schema.Types.ObjectId,
             ref: 'User',
             required: true
         }
-        // comments: [
-        //     {
-        //         type: Schema.Types.ObjectId,
-        //         ref: 'Comment',
-        //         default: []
-        //     }
-        // ]
+
     } 
 )
 

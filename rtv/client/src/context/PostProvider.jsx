@@ -26,11 +26,12 @@ function PostProvider(props) {
             .catch(err => console.log(err))
     }
 
-    //Get All Users Posts
+    //Get All Posts
     function getAllPosts() {
         userAxios.get('/api/api/posts')
         .then(res => {
             setAllPosts(res.data)
+            console.log(res.data)
         })
         .catch(err => console.log(err.response.data.errMsg))
     }
@@ -46,7 +47,6 @@ function PostProvider(props) {
                     ]
                 })
             })
-            .then(res => console.log(res))
             .catch(err => console.log(err.response))
     }
 
@@ -59,6 +59,65 @@ function PostProvider(props) {
             .catch(err => console.log(err))
     }
 
+    //Vote Scores
+    function getVoteScores() {
+        userAxios.get('/api/api/vote/')
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err))
+    }
+
+    //Upvote
+    function upVote(postId) {
+        userAxios.put(`/api/api/vote/up/${postId}`)
+            .then(res => {
+                console.log('butts')
+                // getVoteScores()
+            })
+            .catch(err => console.log(err))
+
+        getAllPosts()
+        // axios.all([
+        //     userAxios.put(`/api/api/vote/up/${postId}`),
+        //     userAxios.put(`/api/api/vote/update/${postId}`)
+        // ])
+        //     .then(axios.spread((res1, res2) => {
+        //         console.log(res1.data)
+        //         console.log(res2.data)
+        //     }))
+        //     .catch(axios.spread((err1, err2) => {
+        //         console.log(err1.data)
+        //         console.log(err2.data)
+        //         }
+        //     )
+        // )
+    }
+
+    //Downvote
+    function downVote(postId) {
+        userAxios.put(`/api/api/vote/down/${postId}`)
+            .then(res => {
+                console.log('butts')
+                // getVoteScores()
+            })
+            .catch(err => console.log(err))
+
+        getAllPosts()
+        // axios.all([
+        //     userAxios.put(`/api/api/vote/down/${postId}`),
+        //     userAxios.put(`/api/api/vote/update/${postId}`)
+        // ])
+        //     .then(axios.spread((res1, res2) => {
+        //         console.log(res1.data)
+        //         console.log(res2.data)
+        //     }))
+        //     .catch(axios.spread((err1, err2) => {
+        //         console.log(err1.data)
+        //         console.log(err2.data)
+        //         }
+        //     )
+        // )
+    }
+
 
 
     return (
@@ -69,7 +128,10 @@ function PostProvider(props) {
                 getUsersPosts,
                 allPosts,
                 getAllPosts,
-                userPosts
+                userPosts,
+                upVote,
+                downVote,
+                getVoteScores
             }}
         >
             {props.children}

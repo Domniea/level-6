@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import APPost from "./APPost";
-import { UserContext } from "../context/UserProvider";
 import { PostContext } from "../context/PostProvider";
 
 
@@ -8,21 +7,23 @@ function APList() {
 
     const {
         allPosts,
-        getAllPosts
+        getAllPosts,
+        upVote,
+        downVote,
+        getVoteScores
     } = useContext(PostContext)
 
-    const PostList = useContext(UserContext)
-    const { } = PostList
-
-    console.log(allPosts)
     useEffect(() => {
         getAllPosts()
+        getVoteScores()
     },[])
 
     const posts = allPosts.map(post => {
         return <APPost 
             key={post._id}
             {...post}
+            upVote={upVote}
+            downVote={downVote}
         />
     })
     

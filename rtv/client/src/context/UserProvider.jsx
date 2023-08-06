@@ -19,7 +19,6 @@ function UserProvider(props) {
     }
 
     const [userState, setUserState] = useState(initUser)
-    const [allPosts, setAllPosts] = useState([])
 
     //Credentials Error Messages
     function errMsgAlert(errAlert) {
@@ -52,7 +51,7 @@ function UserProvider(props) {
                 const { user, token } = res.data
                 localStorage.setItem('token', token)
                 localStorage.setItem('user', JSON.stringify(user))
-                getUsersPosts()
+                // getUsersPosts()
                 setUserState(prevState => ({
                     ...prevState,
                     user,
@@ -71,7 +70,6 @@ function UserProvider(props) {
         setUserState({
             user: '',
             token: '',
-            posts: [],
             errMsg: ''
         })
     }
@@ -89,26 +87,17 @@ function UserProvider(props) {
             .catch(err => console.log(err.response))
     }
 
-    //Get Users Posts
-    function getUsersPosts() {
-        userAxios.get('/api/api/posts/user')
-            .then(res => {
-                setUserState(prevState => ({
-                    ...prevState,
-                    posts: res.data
-                }))
-            })
-            // .then(res => console.log(res.data))
-            .catch(err => console.log(err))
-    }
-
-    //Get All Users Posts
-    // function getAllPosts() {
-    //     userAxios.get('/api/api/posts')
-    //     .then(res => {
-    //         setAllPosts(res.data)
-    //     })
-    //     .catch(err => console.log(err.response.data.errMsg))
+    // //Get Users Posts
+    // function getUsersPosts(userId) {
+    //     userAxios.get(`/api/api/posts/${userId}`)
+    //         .then(res => {
+    //             setUserState(prevState => ({
+    //                 ...prevState,
+    //                 posts: res.data
+    //             }))
+    //         })
+    //         // .then(res => console.log(res.data))
+    //         .catch(err => console.log(err))
     // }
 
     //Delete User Post
@@ -132,7 +121,7 @@ function UserProvider(props) {
             logout,
             addPost,
             deletePost,
-            getUsersPosts
+            // getUsersPosts
             // getAllPosts,
             // allPosts,
 

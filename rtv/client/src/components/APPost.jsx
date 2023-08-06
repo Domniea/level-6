@@ -11,7 +11,7 @@ userAxios.interceptors.request.use(config => {
 })
 
 function APPost(props) {
-    const { title, description, _id } = props
+    const { title, description, _id, upVote, downVote } = props
     
   
     const [postComments, setPostComments] = useState([])
@@ -23,14 +23,17 @@ function APPost(props) {
             .catch(err => console.log(err))
     }
 
+
     useEffect(() => {
         retrievePostComments(_id)
     }, [])
 
     return (
         <div className='post'>
-            <h3>{title}</h3>
-            <h4>{description}</h4>
+            <button onClick={() => upVote(_id)}>UpVote</button>
+            <button onClick={() => downVote(_id)}>DownVote</button>
+            <h3 className='title'>{title}</h3>
+            <h4 className='description'>{description}</h4>
             <CommentsBox 
                 _id={_id}
                 postComments={postComments}

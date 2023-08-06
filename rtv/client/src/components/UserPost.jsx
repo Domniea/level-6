@@ -11,7 +11,7 @@ userAxios.interceptors.request.use(config => {
 })
 
 function UserPost(props) {
-    const { title, _id, description, deletePost } = props
+    const { title, _id, description, deletePost, user_id } = props
     
     const [postComments, setPostComments] = useState([])
     
@@ -21,7 +21,6 @@ function UserPost(props) {
             .then(res => setPostComments(res.data))
             .catch(err => console.log(err))
     }
-
     
     useEffect(() => {
         retrievePostComments(_id)
