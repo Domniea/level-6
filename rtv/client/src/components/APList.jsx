@@ -18,7 +18,9 @@ function APList() {
         getVoteScores()
     },[])
 
-    const posts = allPosts.map(post => {
+    const posts = allPosts
+    // .sort((a,b) => b.votes - a.votes)
+    .map(post => {
         return <APPost 
             key={post._id}
             {...post}

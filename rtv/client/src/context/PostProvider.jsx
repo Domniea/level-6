@@ -16,11 +16,17 @@ function PostProvider(props) {
     const [allPosts, setAllPosts] = useState([])
     const [userPosts, setUserPosts] = useState([])
 
+    
+
+
     //Get Users Posts
     function getUsersPosts(userId) {
         userAxios.get(`/api/api/posts/${userId}`)
             .then(res => {
                 setUserPosts(res.data)
+                // setUserPosts(prevState => {
+                //     return 
+                // })
             })
             // .then(res => console.log(res))
             .catch(err => console.log(err))
@@ -28,7 +34,7 @@ function PostProvider(props) {
 
     //Get All Posts
     function getAllPosts() {
-        userAxios.get('/api/api/posts')
+        userAxios.get('/api/api/vote/sorted')
         .then(res => {
             setAllPosts(res.data)
             console.log(res.data)
@@ -75,7 +81,7 @@ function PostProvider(props) {
             })
             .catch(err => console.log(err))
 
-        getAllPosts()
+        
         // axios.all([
         //     userAxios.put(`/api/api/vote/up/${postId}`),
         //     userAxios.put(`/api/api/vote/update/${postId}`)
@@ -89,7 +95,9 @@ function PostProvider(props) {
         //         console.log(err2.data)
         //         }
         //     )
+
         // )
+        getAllPosts()
     }
 
     //Downvote
@@ -101,7 +109,7 @@ function PostProvider(props) {
             })
             .catch(err => console.log(err))
 
-        getAllPosts()
+   
         // axios.all([
         //     userAxios.put(`/api/api/vote/down/${postId}`),
         //     userAxios.put(`/api/api/vote/update/${postId}`)
@@ -116,6 +124,7 @@ function PostProvider(props) {
         //         }
         //     )
         // )
+        getAllPosts()
     }
 
 

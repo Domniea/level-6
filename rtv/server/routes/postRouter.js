@@ -4,9 +4,10 @@ const Post = require('../models/post')
 const Vote = require('../models/voter')
 
 
+
 // Get All Posts
 postRouter.get("/", (req, res, next) => {
-    Post.find(
+    var myCursor = Post.find(
         (err, posts) => {
             if(err) {
                 res.status(500)
@@ -14,8 +15,9 @@ postRouter.get("/", (req, res, next) => {
             }
             return res.status(200).send(posts)
         }
-    ).sort()
+    )
             
+    
 })
 
 //Get Users Posts
